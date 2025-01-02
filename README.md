@@ -18,7 +18,7 @@ This assessment evaluates your ability to build and integrate a patient registra
    * Implement login functionality with token-based authentication using Django’s authentication framework.
    * Store and manage authentication tokens in Redux.
    * Ensure proper error handling for invalid credentials.
-3.  Patient Data Retrieval & Update:
-   * After logging in, display patient information (e.g., name, email) on a
+3. Patient Data Retrieval & Update:
+  * After logging in, display patient information (e.g., name, email) on a
 dashboard. Users can update other fields except email address.
-   * Fetch data from the PostgreSQL database through the Django API.
+  * Fetch data from the PostgreSQL database through the Django API.
