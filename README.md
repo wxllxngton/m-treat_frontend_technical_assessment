@@ -11,14 +11,14 @@ This assessment evaluates your ability to build and integrate a patient registra
 
 **Tasks:**
 1. Patient Registration:
-  * Create a frontend form for patient registration (e.g., name, email, phone, password).
-  * Send registration data to the Django backend and store it in the PostgreSQL database.
-  * Validate input fields on both frontend and backend.
+   * Create a frontend form for patient registration (e.g., name, email, phone, password).
+   * Send registration data to the Django backend and store it in the PostgreSQL database.
+   * Validate input fields on both frontend and backend.
 2. User Authentication:
-  * Implement login functionality with token-based authentication using Django’s authentication framework.
-  * Store and manage authentication tokens in Redux.
-  * Ensure proper error handling for invalid credentials.
-3. Patient Data Retrieval & Update:
-  * After logging in, display patient information (e.g., name, email) on a
+   * Implement login functionality with token-based authentication using Django’s authentication framework.
+   * Store and manage authentication tokens in Redux.
+   * Ensure proper error handling for invalid credentials.
+3.  Patient Data Retrieval & Update:
+   * After logging in, display patient information (e.g., name, email) on a
 dashboard. Users can update other fields except email address.
-  * Fetch data from the PostgreSQL database through the Django API.
+   * Fetch data from the PostgreSQL database through the Django API.
