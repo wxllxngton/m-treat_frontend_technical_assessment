@@ -17,6 +17,8 @@ drf-jwt = "^1.19.2"
 pyjwt = "^2.9.0"
 requests = "^2.32.3"
 django-cors-headers = "^4.4.0"
+prisma = "^0.15.0"
+asyncio = "^3.4.3"
 
 
 [build-system]
