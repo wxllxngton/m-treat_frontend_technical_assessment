@@ -59,12 +59,12 @@ This installs Prisma and other required libraries listed in the `pyproject.toml`
 Run the following command to apply migrations to the database:
 
 ```bash
-poetry run prisma migrate dev --name update_user_id_to_uuid
+poetry run prisma migrate dev --name update_id_to_uuid
 ```
 
 -   **Explanation:**
     -   `migrate dev`: Applies migrations in development mode.
-    -   `--name update_user_id_to_uuid`: Names the migration, describing the changes (e.g., updating `user_id` to UUID).
+    -   `--name update_id_to_uuid`: Names the migration, describing the changes (e.g., updating `id` to UUID).
 
 ### 2.3 Generate Prisma Client
 

@@ -19,6 +19,7 @@ requests = "^2.32.3"
 django-cors-headers = "^4.4.0"
 prisma = "^0.15.0"
 asyncio = "^3.4.3"
+psycopg2-binary = "^2.9.10"
 
 
 [build-system]

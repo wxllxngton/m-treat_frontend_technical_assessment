@@ -10,11 +10,11 @@ generator client {
 }
 
 model users {
-  user_id       String   @id @default(uuid())          // Maps to user_id column
-  user_name     String                                   // Maps to user_name column
-  user_email    String   @unique                        // Maps to user_email column
-  user_phone_no String   @db.VarChar(12)                // Maps to user_phone_no column
-  user_password String                                   // Maps to user_password column
+  id       String   @id @default(uuid())          // Maps to id column
+  name     String                                   // Maps to name column
+  email    String   @unique                        // Maps to email column
+  phone_no String   @db.VarChar(12)                // Maps to phone_no column
+  password String                                   // Maps to password column
   created_at    DateTime @default(now())                // Maps to created_at column
   updated_at    DateTime @updatedAt                     // Maps to updated_at column
 }
