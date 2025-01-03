@@ -1,6 +1,8 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import AuthPage from './pages/AuthPage';
+import LandingPage from './pages/LandingPage';
+import HomePage from './pages/HomePage';
 
 export const App = () => (
     <Router>
@@ -28,16 +30,4 @@ const Navigation = () => (
             </li>
         </ul>
     </nav>
-);
-
-const HomePage = () => (
-    <main>
-        <h2>Home</h2>
-    </main>
-);
-
-const LandingPage = () => (
-    <main>
-        <h2>About</h2>
-    </main>
 );
