@@ -1,4 +1,5 @@
 from django.contrib.auth.base_user import BaseUserManager
+from django.utils.timezone import now
 from django.db import models
 import uuid
 
@@ -13,6 +14,8 @@ class CustomBaseUser(models.Model):
     email = models.EmailField(unique=True)
     phone_no = models.CharField(max_length=15, blank=True, null=True)
     password = models.CharField(max_length=150)  # Hashed password will be stored here
+    created_at = models.DateTimeField(default=now)
+    updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
         abstract = True
