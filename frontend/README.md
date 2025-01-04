@@ -1,9 +1,5 @@
 # Frontend - M-TREAT Full-Stack Developer Takeaway Assessment
 
-## API Postman Documentation Link
-
-### <a href='https://red-meteor-821121.postman.co/workspace/My-Workspace~979bb11e-6b6f-492f-8b65-3ad67df84410/collection/21896699-ffff5115-76a3-4603-8b10-0c3fa1bd286a?action=share&creator=21896699'>Explore</a>
-
 ## Setup Instructions
 
 ### Prerequisites
