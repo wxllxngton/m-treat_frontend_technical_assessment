@@ -4,10 +4,10 @@ import flowbite from 'flowbite/plugin';
 const config: Config = {
     darkMode: 'class', // Keep dark mode configuration
     content: [
-        './src/pages/**/*.{js,ts,jsx,tsx,mdx}', // Ensure correct paths
+        './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
         './src/components/**/*.{js,ts,jsx,tsx,mdx}',
         './src/app/**/*.{js,ts,jsx,tsx,mdx}',
-        './node_modules/flowbite-react/**/*.{js,jsx,ts,tsx}', // Include Flowbite components
+        './node_modules/flowbite-react/**/*.{js,jsx,ts,tsx}',
         './index.html',
     ],
     theme: {

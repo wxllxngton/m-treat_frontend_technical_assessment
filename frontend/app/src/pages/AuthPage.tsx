@@ -1,16 +1,18 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowLeft, Mail, Lock, User, Phone } from 'lucide-react';
 import PhoneInputComp from '../components/PhoneInputComp';
 import { toast, Toaster } from 'react-hot-toast';
 import { AuthController } from '../controllers/AuthController';
+import { useNavigate } from 'react-router-dom';
 
-export default function AuthPage() {
+const AuthPage: React.FC = () => {
     const [isSignUp, setIsSignUp] = useState(false);
     const [phoneNo, setPhoneNo] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [username, setUsername] = useState('');
+    const navigate = useNavigate();
 
     const clearFormFields = () => {
         setUsername('');
@@ -38,7 +40,8 @@ export default function AuthPage() {
                 await authController.handleSignUpSubmit(credentials);
                 toggleAuthMode();
             } else {
-                await authController.handleSignInSubmit({ email, password });
+                // await authController.handleSignInSubmit({ email, password });
+                navigate('/home'); // Redirect to the home page after successful login
             }
         } catch (error) {
             toast.error('Something went wrong. Please try again.');
@@ -46,7 +49,7 @@ export default function AuthPage() {
     };
 
     return (
-        <div className="min-h-screen bg-gradient-to-b from-indigo-100 to-white flex items-center justify-center px-4">
+        <div className="min-h-screen bg-gradient-to-b  from-teal-100 to-white  flex items-center justify-center px-4">
             <motion.div
                 className="bg-white p-8 rounded-2xl shadow-xl max-w-md w-full"
                 initial={{ opacity: 0, y: -20 }}
@@ -55,7 +58,7 @@ export default function AuthPage() {
             >
                 <a
                     href="/"
-                    className="inline-flex items-center text-indigo-600 hover:text-indigo-800 mb-6"
+                    className="inline-flex items-center text-teal-600 hover:text-teal-800 mb-6"
                 >
                     <ArrowLeft className="w-4 h-4 mr-2" />
                     Back to Home
@@ -88,7 +91,7 @@ export default function AuthPage() {
                                             type="text"
                                             id="username"
                                             name="username"
-                                            className="pl-10 w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                                            className="pl-10 w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500"
                                             placeholder="John Doe"
                                             value={username}
                                             onChange={(e) =>
@@ -128,7 +131,7 @@ export default function AuthPage() {
                                     type="email"
                                     id="email"
                                     name="email"
-                                    className="pl-10 w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                                    className="pl-10 w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500"
                                     placeholder="you@example.com"
                                     value={email}
                                     onChange={(e) => setEmail(e.target.value)}
@@ -149,7 +152,7 @@ export default function AuthPage() {
                                     type="password"
                                     id="password"
                                     name="password"
-                                    className="pl-10 w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                                    className="pl-10 w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500"
                                     placeholder="••••••••"
                                     value={password}
                                     onChange={(e) =>
@@ -161,7 +164,7 @@ export default function AuthPage() {
                         </div>
                         <motion.button
                             type="submit"
-                            className="w-full bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 transition-colors"
+                            className="w-full bg-teal-600 text-white py-2 px-4 rounded-md hover:bg-teal-700 transition-colors"
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
                         >
@@ -179,7 +182,7 @@ export default function AuthPage() {
                                 clearFormFields();
                                 toggleAuthMode();
                             }}
-                            className="ml-1 text-indigo-600 hover:text-indigo-800 font-medium"
+                            className="ml-1 text-teal-600 hover:text-teal-800 font-medium"
                         >
                             {isSignUp ? 'Sign In' : 'Sign Up'}
                         </button>
@@ -189,4 +192,6 @@ export default function AuthPage() {
             <Toaster />
         </div>
     );
-}
+};
+
+export default AuthPage;

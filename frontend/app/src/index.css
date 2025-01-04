@@ -1,4 +1,4 @@
-:root {
+/* :root {
     font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
     line-height: 1.5;
     font-weight: 400;
@@ -11,19 +11,9 @@
     --foreground: rgba(255, 255, 255, 0.87);
 }
 
-body {
-    @apply flex items-center justify-center m-0 min-w-[320px] min-h-screen;
-    background-color: var(--background);
-    color: var(--foreground);
-}
-
-button {
-    @apply rounded-lg border-transparent bg-gray-800 text-white font-medium px-4 py-2 transition hover:border-indigo-500;
-}
-
 @media (prefers-color-scheme: light) {
     :root {
         --background: #ffffff;
         --foreground: #213547;
     }
-}
+} */

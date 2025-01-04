@@ -3,11 +3,10 @@ import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import AuthPage from './pages/AuthPage';
 import LandingPage from './pages/LandingPage';
 import HomePage from './pages/HomePage';
-import './index.css';
+// import './index.css';
 
-export const App = () => (
+export const App: React.FC = () => (
     <Router>
-        <Navigation />
         <hr />
         <Routes>
             <Route path="/" element={<LandingPage />} />
@@ -15,20 +14,4 @@ export const App = () => (
             <Route path="/home" element={<HomePage />} />
         </Routes>
     </Router>
-);
-
-const Navigation = () => (
-    <nav>
-        <ul>
-            <li>
-                <Link to="/">Landing</Link>
-            </li>
-            <li>
-                <Link to="/auth">Auth</Link>
-            </li>
-            <li>
-                <Link to="/home">Home</Link>
-            </li>
-        </ul>
-    </nav>
 );

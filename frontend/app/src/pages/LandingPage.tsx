@@ -1,6 +1,7 @@
+import React from 'react';
 import { motion } from 'framer-motion';
 
-export default function LandingPage() {
+const LandingPage: React.FC = () => {
     return (
         <div className="min-h-screen bg-gradient-to-b from-teal-100 to-white text-gray-900">
             <header className="container mx-auto px-4 py-8 flex justify-between items-center">
@@ -56,4 +57,6 @@ export default function LandingPage() {
             </main>
         </div>
     );
-}
+};
+
+export default LandingPage;

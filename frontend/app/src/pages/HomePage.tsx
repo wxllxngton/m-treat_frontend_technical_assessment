@@ -1,26 +1,33 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowLeft, User, Phone, Mail, X } from 'lucide-react';
+import { HomeController } from '../controllers/HomeController';
+import { toast, Toaster } from 'react-hot-toast';
 
 interface UserInfo {
+    id: string;
     username: string;
     email: string;
-    phone: string;
+    phone_no: string;
 }
 
-export default function HomePage() {
+const userId = '8aff7578-8a41-472f-8d43-6bb98e53dff9';
+
+const HomePage: React.FC = () => {
     const [userInfo, setUserInfo] = useState<UserInfo | null>(null);
     const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+    const [phone, setPhone] = useState('');
+    const [password, setPassword] = useState('');
+
+    const homeController = new HomeController();
 
     useEffect(() => {
         const fetchUserInfo = async () => {
-            // Replace this with an actual API call in a real application
-            const mockUserInfo: UserInfo = {
-                username: 'John Doe',
-                email: 'john.doe@example.com',
-                phone: '+1 (555) 123-4567',
-            };
-            setUserInfo(mockUserInfo);
+            const userInfo = await homeController.fetchUserDetails(userId);
+            if (userInfo) {
+                setUserInfo(userInfo);
+                setPhone(userInfo.phone_no);
+            }
         };
 
         fetchUserInfo();
@@ -28,11 +35,21 @@ export default function HomePage() {
 
     const toggleEditModal = () => setIsEditModalOpen(!isEditModalOpen);
 
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        // Handle form submission here
-        // You would typically send this data to your backend
-        toggleEditModal();
+        const details = {
+            phone_no: phone,
+            password: password ? password : undefined,
+        };
+
+        const updatedUserInfo = await homeController.updateUserDetails(
+            userId,
+            details
+        );
+        if (updatedUserInfo) {
+            setUserInfo(updatedUserInfo);
+            toggleEditModal();
+        }
     };
 
     return (
@@ -56,35 +73,35 @@ export default function HomePage() {
                 <AnimatePresence>
                     {userInfo && (
                         <motion.div
-                            className="space-y-4"
+                            className="space-y-6"
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0, y: -20 }}
                             transition={{ duration: 0.3 }}
                         >
-                            <div className="flex items-center p-3 bg-gray-100 rounded-lg">
-                                <User className="w-5 h-5 text-teal-600 mr-3" />
-                                <span className="text-gray-800">
+                            <div className="flex items-center p-4 bg-gray-100 rounded-lg shadow-sm">
+                                <User className="w-6 h-6 text-teal-600 mr-4" />
+                                <span className="text-gray-800 text-lg">
                                     {userInfo.username}
                                 </span>
                             </div>
-                            <div className="flex items-center p-3 bg-gray-100 rounded-lg">
-                                <Mail className="w-5 h-5 text-teal-600 mr-3" />
-                                <span className="text-gray-800">
+                            <div className="flex items-center p-4 bg-gray-100 rounded-lg shadow-sm">
+                                <Mail className="w-6 h-6 text-teal-600 mr-4" />
+                                <span className="text-gray-800 text-lg">
                                     {userInfo.email}
                                 </span>
                             </div>
-                            <div className="flex items-center p-3 bg-gray-100 rounded-lg">
-                                <Phone className="w-5 h-5 text-teal-600 mr-3" />
-                                <span className="text-gray-800">
-                                    {userInfo.phone}
+                            <div className="flex items-center p-4 bg-gray-100 rounded-lg shadow-sm">
+                                <Phone className="w-6 h-6 text-teal-600 mr-4" />
+                                <span className="text-gray-800 text-lg">
+                                    {userInfo.phone_no}
                                 </span>
                             </div>
                         </motion.div>
                     )}
                 </AnimatePresence>
                 <motion.button
-                    className="w-full bg-teal-600 text-white py-2 px-4 rounded-md hover:bg-teal-700 transition-colors mt-8"
+                    className="w-full bg-teal-600 text-white py-3 px-6 rounded-md hover:bg-teal-700 transition-colors mt-8"
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                     onClick={toggleEditModal}
@@ -123,43 +140,11 @@ export default function HomePage() {
                                     <X className="w-6 h-6" />
                                 </button>
                             </div>
-                            <form onSubmit={handleSubmit} className="space-y-4">
-                                <div>
-                                    <label
-                                        htmlFor="username"
-                                        className="block text-sm font-medium text-gray-700 mb-1"
-                                    >
-                                        Username
-                                    </label>
-                                    <input
-                                        type="text"
-                                        id="username"
-                                        name="username"
-                                        defaultValue={userInfo?.username}
-                                        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500"
-                                        required
-                                    />
-                                </div>
-                                <div>
-                                    <label
-                                        htmlFor="email"
-                                        className="block text-sm font-medium text-gray-700 mb-1"
-                                    >
-                                        Email
-                                    </label>
-                                    <input
-                                        type="email"
-                                        id="email"
-                                        name="email"
-                                        defaultValue={userInfo?.email}
-                                        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500"
-                                        required
-                                    />
-                                </div>
+                            <form onSubmit={handleSubmit} className="space-y-6">
                                 <div>
                                     <label
                                         htmlFor="phone"
-                                        className="block text-sm font-medium text-gray-700 mb-1"
+                                        className="block text-sm font-medium text-gray-700 mb-2"
                                     >
                                         Phone
                                     </label>
@@ -167,14 +152,36 @@ export default function HomePage() {
                                         type="tel"
                                         id="phone"
                                         name="phone"
-                                        defaultValue={userInfo?.phone}
-                                        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500"
+                                        value={phone}
+                                        onChange={(e) =>
+                                            setPhone(e.target.value)
+                                        }
+                                        className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500"
                                         required
+                                    />
+                                </div>
+                                <div>
+                                    <label
+                                        htmlFor="password"
+                                        className="block text-sm font-medium text-gray-700 mb-2"
+                                    >
+                                        Password
+                                    </label>
+                                    <input
+                                        type="password"
+                                        id="password"
+                                        name="password"
+                                        value={password}
+                                        onChange={(e) =>
+                                            setPassword(e.target.value)
+                                        }
+                                        placeholder="*****"
+                                        className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500"
                                     />
                                 </div>
                                 <motion.button
                                     type="submit"
-                                    className="w-full bg-teal-600 text-white py-2 px-4 rounded-md hover:bg-teal-700 transition-colors"
+                                    className="w-full bg-teal-600 text-white py-3 px-6 rounded-md hover:bg-teal-700 transition-colors"
                                     whileHover={{ scale: 1.05 }}
                                     whileTap={{ scale: 0.95 }}
                                 >
@@ -185,6 +192,9 @@ export default function HomePage() {
                     </motion.div>
                 )}
             </AnimatePresence>
+            <Toaster />
         </div>
     );
-}
+};
+
+export default HomePage;
