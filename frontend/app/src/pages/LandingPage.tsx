@@ -1,5 +1,4 @@
 import { motion } from 'framer-motion';
-import { ArrowRight, Heart, Stethoscope, Video, Calendar } from 'lucide-react';
 
 export default function LandingPage() {
     return (
@@ -8,22 +7,6 @@ export default function LandingPage() {
                 <h1 className="text-2xl font-bold text-teal-600">M-TREAT</h1>
                 <nav>
                     <ul className="flex space-x-4">
-                        <li>
-                            <a
-                                href="#features"
-                                className="hover:text-teal-600 transition-colors"
-                            >
-                                Features
-                            </a>
-                        </li>
-                        <li>
-                            <a
-                                href="#how-it-works"
-                                className="hover:text-teal-600 transition-colors"
-                            >
-                                How It Works
-                            </a>
-                        </li>
                         <li>
                             <a
                                 href="/auth"
@@ -67,12 +50,6 @@ export default function LandingPage() {
                             className="bg-teal-600 text-white px-6 py-3 rounded-full hover:bg-teal-700 transition-colors"
                         >
                             Get Started
-                        </a>
-                        <a
-                            href="#features"
-                            className="border border-teal-600 text-teal-600 px-6 py-3 rounded-full hover:bg-teal-50 transition-colors"
-                        >
-                            Learn More
                         </a>
                     </motion.div>
                 </section>
