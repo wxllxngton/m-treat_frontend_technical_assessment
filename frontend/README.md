@@ -4,7 +4,7 @@
 
 ### Prerequisites
 
--   **Deno**: For running the development server and managing dependencies.
+-   **Deno.js**: For running the development server and managing dependencies.
 -   **deno**: For installing dependencies.
 
 ### Step 1: Install Dependencies
