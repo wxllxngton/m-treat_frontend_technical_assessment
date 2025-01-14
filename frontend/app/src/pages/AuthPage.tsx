@@ -40,8 +40,14 @@ const AuthPage: React.FC = () => {
                 await authController.handleSignUpSubmit(credentials);
                 toggleAuthMode();
             } else {
-                // await authController.handleSignInSubmit({ email, password });
-                navigate('/home'); // Redirect to the home page after successful login
+                const successfullSignIn =
+                    await authController.handleSignInSubmit({
+                        email,
+                        password,
+                    });
+
+                // Redirect to the home page after successful login
+                if (successfullSignIn) navigate('/home');
             }
         } catch (error) {
             toast.error('Something went wrong. Please try again.');

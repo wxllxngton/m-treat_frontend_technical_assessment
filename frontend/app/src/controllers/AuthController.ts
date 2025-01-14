@@ -53,16 +53,19 @@ export class AuthController {
     ) {
         try {
             const { result, error } = await this.authModel.signIn(credentials);
+            console.log('Result SIGNIN: ', result);
+            console.log('Error SIGNIN: ', error);
 
             if (error) {
                 console.error('Error occurred during sign-in:', error);
                 this.renderToast('error', `Sign-in failed: ${String(error)}`);
-                return;
+                return false;
             }
 
             if (result) {
                 console.log('User signed in successfully!', result);
                 this.renderToast('success', 'Sign-in successful!');
+                return true;
             }
         } catch (error: any) {
             console.error('Unexpected error during sign-in:', error.message);
