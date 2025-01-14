@@ -4,9 +4,9 @@ from rest_framework import status
 from django.contrib.auth import authenticate
 from django.shortcuts import get_object_or_404
 from rest_framework_simplejwt.tokens import RefreshToken
+from django.contrib.auth.hashers import check_password
 from .models import User
 from .serializers import UserSerializer, LoginSerializer
-from django.contrib.auth.hashers import check_password
 
 class UserRegistrationView(APIView):
     def post(self, request):
@@ -15,6 +15,7 @@ class UserRegistrationView(APIView):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
 
 class UserLoginView(APIView):
     def post(self, request):
