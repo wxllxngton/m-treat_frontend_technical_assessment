@@ -1677,6 +1677,7 @@
       "dependencies": [
         "npm:@deno/vite-plugin@^1.0.2",
         "npm:@eslint/js@^9.17.0",
+        "npm:@reduxjs/toolkit@^2.5.0",
         "npm:@types/react-dom@^18.3.5",
         "npm:@types/react@^18.3.18",
         "npm:@vitejs/plugin-react@^4.3.4",

@@ -3,6 +3,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowLeft, User, Phone, Mail, X } from 'lucide-react';
 import { HomeController } from '../controllers/HomeController';
 import { toast, Toaster } from 'react-hot-toast';
+import { selectUserId } from '../store/features/user/userSlice';
+import { useSelector } from 'react-redux';
 
 interface UserInfo {
     id: string;
@@ -11,13 +13,12 @@ interface UserInfo {
     phone_no: string;
 }
 
-const userId = '8aff7578-8a41-472f-8d43-6bb98e53dff9';
-
 const HomePage: React.FC = () => {
     const [userInfo, setUserInfo] = useState<UserInfo | null>(null);
     const [isEditModalOpen, setIsEditModalOpen] = useState(false);
     const [phone, setPhone] = useState('');
     const [password, setPassword] = useState('');
+    const userId = useSelector(selectUserId);
 
     const homeController = new HomeController();
 
@@ -31,7 +32,7 @@ const HomePage: React.FC = () => {
         };
 
         fetchUserInfo();
-    }, []);
+    }, [userId]);
 
     const toggleEditModal = () => setIsEditModalOpen(!isEditModalOpen);
 

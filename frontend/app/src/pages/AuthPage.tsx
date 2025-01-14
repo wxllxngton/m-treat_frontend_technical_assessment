@@ -5,6 +5,12 @@ import PhoneInputComp from '../components/PhoneInputComp';
 import { toast, Toaster } from 'react-hot-toast';
 import { AuthController } from '../controllers/AuthController';
 import { useNavigate } from 'react-router-dom';
+import { useAppDispatch } from '../store/hooks';
+import {
+    setRefreshToken,
+    setAccessToken,
+    setUserId,
+} from '../store/features/user/userSlice';
 
 const AuthPage: React.FC = () => {
     const [isSignUp, setIsSignUp] = useState(false);
@@ -13,6 +19,7 @@ const AuthPage: React.FC = () => {
     const [password, setPassword] = useState('');
     const [username, setUsername] = useState('');
     const navigate = useNavigate();
+    const dispatch = useAppDispatch();
 
     const clearFormFields = () => {
         setUsername('');
@@ -40,14 +47,18 @@ const AuthPage: React.FC = () => {
                 await authController.handleSignUpSubmit(credentials);
                 toggleAuthMode();
             } else {
-                const successfullSignIn =
-                    await authController.handleSignInSubmit({
-                        email,
-                        password,
-                    });
+                const response = await authController.handleSignInSubmit({
+                    email,
+                    password,
+                });
 
                 // Redirect to the home page after successful login
-                if (successfullSignIn) navigate('/home');
+                if (response) {
+                    dispatch(setAccessToken(response.access));
+                    dispatch(setRefreshToken(response.refresh));
+                    dispatch(setUserId(response.user_id));
+                    navigate('/home');
+                }
             }
         } catch (error) {
             toast.error('Something went wrong. Please try again.');

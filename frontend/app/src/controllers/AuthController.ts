@@ -59,13 +59,13 @@ export class AuthController {
             if (error) {
                 console.error('Error occurred during sign-in:', error);
                 this.renderToast('error', `Sign-in failed: ${String(error)}`);
-                return false;
+                return;
             }
 
             if (result) {
                 console.log('User signed in successfully!', result);
                 this.renderToast('success', 'Sign-in successful!');
-                return true;
+                return result;
             }
         } catch (error: any) {
             console.error('Unexpected error during sign-in:', error.message);
